@@ -1,0 +1,28 @@
+<div class="container">
+  <h4>ログイン</h4>
+  <h5>会員の方はこちらからログイン</h5>
+  
+  <%= form_with model: @customer, url: customer_session_path do |f| %>
+    <table>
+      <tbody>
+        <tr>
+          <td><%= f.label :"メールアドレス"  %></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+      
+        <tr>
+          <td><%= f.label :"パスワード" %></td>
+          <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+        </tr>
+        
+        <div class="actions">
+          <tr>
+            <td><%= f.submit "ログイン", class: "btn-primary" %></td>
+          </tr>
+        </div>
+      </tbody>
+    </table>
+  <% end %>
+  
+  <%= render "customer/shared/links" %>
+</div>
