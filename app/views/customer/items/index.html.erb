@@ -10,7 +10,8 @@
         <div class="col-3">
         <%= image_tag item.get_image(200,200) %></br>
         <%= item.name %></br>
-        <%= "¥" + item.price.to_s %>
+        <% price = item.price*1.08 %>
+        ¥<%= price.round %>
         </div>
       <% end %>
   </div>
