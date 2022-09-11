@@ -8,7 +8,7 @@
         <ul class="navbar-nav ml-auto">
           <% if admin_signed_in? %>
             <li class="nav-item nav-link">
-              商品一覧
+              <%= link_to "商品一覧", admin_items_path, class: "text-dark" %>
             </li>
             <li class="nav-item nav-link">
               <%= link_to "会員一覧", admin_customers_path, class: "text-dark" %>
@@ -17,7 +17,7 @@
               注文履歴一覧
             </li>
             <li class="nav-item nav-link">
-              ジャンル一覧
+              <%= link_to "ジャンル一覧", admin_genres_path, class: "text-dark" %>
             </li>
             <li class="nav-item">
               <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>

@@ -16,7 +16,9 @@
               <% end %>
             </li>
             <li class="nav-item nav-link">
-              商品一覧
+              <%= link_to items_path, class: 'nav-link text-dark' do %>
+                商品一覧
+              <% end %>
             </li>
             <li class="nav-item nav-link">
               カート
@@ -32,8 +34,10 @@
                 About
               <% end %>
             </li>
-            <li class="nav-item nav-link">
-              商品一覧
+            <li class="nav-item">
+              <%= link_to items_path, class: 'nav-link text-dark' do %>
+                商品一覧
+              <% end %>
             </li>
             <li class="nav-item">
               <%= link_to new_customer_registration_path, class: 'nav-link text-dark' do %>
