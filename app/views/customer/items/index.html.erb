@@ -9,10 +9,12 @@
       <% @items.each do |item| %>
         <% if item.is_active == true %>
         <div class="col-3">
+        <%= link_to item_path(item.id) do %>
         <%= image_tag item.get_image(200,200) %></br>
-        <%= item.name %></br>
+        <% end %>
+        <%= link_to item.name, item_path(item.id) %></br>
         <% price = item.price*1.08 %>
-        ¥<%= price.round %>
+        ¥<%= (item.price*1.08).round %>
         </div>
         <% end %>
       <% end %>

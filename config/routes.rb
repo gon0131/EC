@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     patch "/customers/withdraw" => "customers#withdraw"
     resources :items
     resources :cart_items
+    delete :cart_items, to: 'cart_items#destroy_all'
     resources :orders
     resources :addresses
   end

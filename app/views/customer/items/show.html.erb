@@ -1,2 +1,24 @@
-<h1>Customer::Items#show</h1>
-<p>Find me in app/views/customer/items/show.html.erb</p>
+<%= render "layouts/header" %>
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4">
+      <%= image_tag @item.get_image(250,300) %>
+    </div>
+    <div class="col-6">
+      <h1>
+        <strong><%= @item.name %></strong>
+      </h1>
+      <h6><%= @item.introduction %></h6>
+      <h6>¥<%= (@item.price*1.08).floor %>(税込)</h6>
+      <% if customer_signed_in? %>
+        <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.select :amount, *[1..40], include_blank: "個数を選択して下さい" %>
+          <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
