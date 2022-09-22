@@ -13,7 +13,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.update(order_params)
       @order.order_details.update_all(order_status: 1) if @order.order_status_i18n == "入金確認"
-      redirect_to admin_orders_path
+      redirect_to admin_order_path(@order.id)
     end
   end
 

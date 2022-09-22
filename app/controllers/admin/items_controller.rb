@@ -1,6 +1,13 @@
 class Admin::ItemsController < ApplicationController
+  before_action :set_q, only: [:index]
+
   def index
-    @items = Item.all
+    @results = @q.result
+    if @results == nil
+      @items = Item.all
+    else
+      @items = @q.result
+    end
   end
 
   def new
@@ -22,7 +29,7 @@ class Admin::ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
@@ -31,8 +38,11 @@ class Admin::ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
+  def set_q
+    @q = Item.ransack(params[:q])
+  end
 
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :genre_id, :is_active, :image)

@@ -4,7 +4,7 @@ class Admin::OrderDetailsController < ApplicationController
     if @order_detail.update(order_detail_params)
       Order.find(@order_detail.order_id).update(order_status: 2) if @order_detail.order_status_i18n == "製作中"
       Order.find(@order_detail.order_id).update(order_status: 3) if @order_detail.order_status_i18n == "製作完了"
-      redirect_to admin_orders_path
+      redirect_to admin_order_path(@order_detail.order.id)
     end
   end
 
