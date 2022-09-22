@@ -1,0 +1,24 @@
+<%= render "layouts/header_admin" %>
+<div class="container">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+      <% @order_detail = order.order_details.map(&:amount) %>
+        <tr>
+          <td><%= link_to order.created_at.to_s(:datetime_jp), admin_order_path(order.id), class: "text-dark" %></td>
+          <td><%= order.recipient_name %></td>
+          <td><%= @order_detail.sum %></td>
+          <td><%= order.order_status_i18n %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

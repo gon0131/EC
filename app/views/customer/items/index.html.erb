@@ -13,8 +13,7 @@
         <%= image_tag item.get_image(200,200) %></br>
         <% end %>
         <%= link_to item.name, item_path(item.id) %></br>
-        <% price = item.price*1.08 %>
-        ¥<%= (item.price*1.08).round %>
+        ¥<%= item.with_tax_price %>
         </div>
         <% end %>
       <% end %>

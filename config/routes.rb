@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :customers,skip: [:passwords,], controllers: {
     registrations: "customer/registrations",
     sessions: 'customer/sessions'
@@ -12,11 +12,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
     resources :orders
+    resources :order_details, only: [:update]
     resources :customers
     resources :genres
     resources :items
   end
-  
+
   scope module: :customer do
     root to: "homes#top"
     get "/about" => "homes#about"
@@ -28,6 +29,8 @@ Rails.application.routes.draw do
     resources :items
     resources :cart_items
     delete :cart_items, to: 'cart_items#destroy_all'
+    post "/orders/confirm" => "orders#confirm"
+    get "/orders/complete" => "orders#complete"
     resources :orders
     resources :addresses
   end
