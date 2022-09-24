@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  before_action :set_q, only: [:index]
+  before_action :set_q
 
   def index
     @results = @q.result
